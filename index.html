@@ -13,6 +13,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      flex-direction: column;
     }
 
     .message {
@@ -21,6 +22,7 @@
       font-weight: bold;
       color: #eee;
       text-shadow: 2px 2px 4px white;
+      margin-bottom: 20px;
     }
 
     .letter {
@@ -92,18 +94,31 @@
         transform: translateX(-50px);
       }
     }
+
+    /* Play button styling */
+    #playButton {
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    #playButton:hover {
+      background-color: #ff1493;
+    }
   </style>
 </head>
 <body>
-  <button onclick="document.getElementById('bgmusic').play()" style="position: absolute; top: 10px; left: 10px; z-index: 99;">
-  Tap here love
-</button>
+  <button id="playButton">Tap here love</button>
 
-<audio id="bgmusic" loop>
+  <audio id="bgMusic" loop>
     <source src="La-Vie-En-Rose.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
-  
 
   <div class="message">
     <span class="letter">I</span>
@@ -126,6 +141,12 @@
 
   <!-- Floating hearts script -->
   <script>
+    document.getElementById('playButton').addEventListener('click', function() {
+      var audio = document.getElementById('bgMusic');
+      audio.play();
+      this.style.display = 'none'; // Hide the play button after clicking
+    });
+
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
